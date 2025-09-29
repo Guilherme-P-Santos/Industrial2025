@@ -1,4 +1,6 @@
 import  pygame as pg 
+import time 
+import threading
 
 janelaY = 850
 janelaX = 1500
@@ -247,7 +249,9 @@ while loop:
                 jogador.x = tamanhoTela[x] - 100
 
             elif k == "S9TP":
-                mapaAtual = 10
+                
+                if k == "S9TP":
+                    mapaAtual = 10
 
             elif k == "S10Direita":
                 mapaAtual = 10
@@ -263,7 +267,9 @@ while loop:
                 mapaAtual = 9
                 jogador.x = tamanhoTela[x] - 100
             elif k == "S11TP":
-                mapaAtual = 8
+                time.sleep(3)
+                if k == "S11TP":
+                    mapaAtual = 8
 
             elif k == "S12Esquerda":
                 mapaAtual = 10
@@ -286,3 +292,4 @@ while loop:
         jogador.x -= velocidade
 
     pg.display.flip()
+
