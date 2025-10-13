@@ -162,8 +162,13 @@ while loop:
     colisaoDireita = False
     colisaoEsquerdo = False
 
-    if mapaAtual == 2 or mapaAtual == 3 or mapaAtual == 4 or mapaAtual == 5 or mapaAtual == 7 or mapaAtual == 8 or mapaAtual == 11:
+    if mapaAtual in [2, 3, 4, 5, 7, 8, 11]:
+             
+     if "objeto" in mapa[mapaAtual]:
         add((255, 165, 0), mapa[mapaAtual]["objeto"])
+              
+        if jogador.colliderect(mapa[mapaAtual]["objeto"]):
+            mapa[mapaAtual].pop("objeto")
 
     for parede in mapa[mapaAtual]["paredes"]:
         add((255,0,0),parede)
@@ -303,3 +308,4 @@ while loop:
         jogador.x -= velocidade
 
     pg.display.flip()
+
