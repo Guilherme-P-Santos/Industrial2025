@@ -28,7 +28,7 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)]},
 
         {"saidas" : {"S2Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S2Esquerda" : pg.Rect(0, 0, 1, tamanhoTela[y]),},
-          "paredes" : [pg.Rect(0, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
+         "paredes" : [pg.Rect(0, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
                       pg.Rect(tamanhoTela[x] * 0.6, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
                       pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
                       pg.Rect(0, tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
@@ -36,19 +36,21 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y]),]},
 
         {"saidas": {"S3Cima" : pg.Rect(0,0,tamanhoTela[x],1)}, 
-          "paredes": [pg.Rect(0, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.6, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(0,0,tamanhoTela[x] * 0.03, tamanhoTela[y]),
-                      pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])]},
+         "paredes": [pg.Rect(0, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
+                     pg.Rect(tamanhoTela[x] * 0.6, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
+                     pg.Rect(0,0,tamanhoTela[x] * 0.03, tamanhoTela[y]),
+                     pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
+                     pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])],
+         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
 
         {"saidas": {"S4Cima" : pg.Rect(0,0,tamanhoTela[x],1)}, 
-          "paredes": [pg.Rect(0, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
+         "paredes": [pg.Rect(0, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
                       pg.Rect(tamanhoTela[x] * 0.6, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
                       pg.Rect(0,0,tamanhoTela[x] * 0.03, tamanhoTela[y]),
                       pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])]},
-
+                      pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])],
+         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)
+         },
 
         {"saidas" : {"S5Baixo" : pg.Rect(0,tamanhoTela[y],tamanhoTela[x],1),"S5Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),},
          "paredes" : [pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
@@ -56,7 +58,9 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(0,0,tamanhoTela[x] * 0.03, tamanhoTela[y]), 
                       pg.Rect(0,0,1600, tamanhoTela[x] * 0.03), 
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)]},
+                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
+        "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)
+         },
 
         {"saidas" : {"S6Cima" : pg.Rect(0,0,tamanhoTela[x],1),
                      "S6Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),
@@ -69,7 +73,9 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
                       pg.Rect(0 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)]},
+                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
+        "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)
+         },
 
         {"saidas" : {"S7Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),
                      "S7Baixo" : pg.Rect(0,tamanhoTela[y],tamanhoTela[x],1),
@@ -89,13 +95,17 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(tamanhoTela[x] * 0.6, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
                       pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
                       pg.Rect(0 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
-                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y])]},
+                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y])],
+        "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)
+         },
 
         {"saidas" : {"S9TP" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
          "paredes" : [pg.Rect(0, 0, tamanhoTela[x], tamanhoTela[x] * 0.03), 
                       pg.Rect(0,0,tamanhoTela[x] * 0.03, tamanhoTela[y]),
                       pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])]},
+                      pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])],
+        "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)
+         },
 
         {"saidas" : {"S10Baixo" : pg.Rect(0,tamanhoTela[y],tamanhoTela[x],1),"S10Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),},
          "paredes" : [pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
@@ -122,9 +132,9 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(tamanhoTela[x] * 0.6, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
                       pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
                       pg.Rect(0 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
-                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y])]},
-        
-        
+                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y])],
+        "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)
+         },
 ]
 
 add = janela.fill
@@ -151,6 +161,9 @@ while loop:
     colisaoBaixo = False
     colisaoDireita = False
     colisaoEsquerdo = False
+
+    if mapaAtual == 2 or mapaAtual == 3 or mapaAtual == 4 or mapaAtual == 5 or mapaAtual == 7 or mapaAtual == 8 or mapaAtual == 11:
+        add((255, 165, 0), mapa[mapaAtual]["objeto"])
 
     for parede in mapa[mapaAtual]["paredes"]:
         add((255,0,0),parede)
@@ -280,8 +293,6 @@ while loop:
     for saida in mapa[mapaAtual]["saidas"].values():
         add((0,255,0), saida)
 
-    
-
     if teclas[pg.K_UP] and not colisaoCima:
         jogador.y -= velocidade
     if teclas[pg.K_DOWN] and not colisaoBaixo:
@@ -292,4 +303,3 @@ while loop:
         jogador.x -= velocidade
 
     pg.display.flip()
-
