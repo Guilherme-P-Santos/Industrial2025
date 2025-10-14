@@ -14,6 +14,8 @@ print(tamanhoTela)
 janela = pg.display.set_mode(tamanhoTela)
 
 velocidade = 9
+vel_inimigo = velocidade / 2
+
 jY = 500
 jX = 500
 
@@ -33,7 +35,8 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
                       pg.Rect(0, tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
                       pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y]),]},
+                      pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y]),],
+        "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
 
         {"saidas": {"S3Cima" : pg.Rect(0,0,tamanhoTela[x],1)}, 
          "paredes": [pg.Rect(0, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
@@ -86,7 +89,8 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
                       pg.Rect(0 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)]},
+                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
+         "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
         
         {"saidas" : {"S8Baixo" : pg.Rect(0,tamanhoTela[y],tamanhoTela[x],1),
                      "S8Esquerda" : pg.Rect(0, 0, 1, tamanhoTela[y]),},
@@ -113,7 +117,8 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(0,0,tamanhoTela[x] * 0.03, tamanhoTela[y]), 
                       pg.Rect(0,0,1600, tamanhoTela[x] * 0.03), 
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)]},
+                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
+         "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
 
         {"saidas" : {"S11Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]), 
                      "S11Esquerda" : pg.Rect(0, 0, 1, tamanhoTela[y]),
@@ -124,7 +129,8 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
                       pg.Rect(0 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)]},
+                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
+         "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
 
         {"saidas" : {"S12Esquerda" : pg.Rect(0, 0, 1, tamanhoTela[y]),},
          "paredes" : [pg.Rect(0, 0, tamanhoTela[x], tamanhoTela[x] * 0.03), 
@@ -133,7 +139,8 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
                       pg.Rect(0 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y])],
-        "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)
+        "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
+        "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)
          },
 ]
 
@@ -141,6 +148,7 @@ add = janela.fill
 loop = True
 clock = pg.time.Clock()
 
+vida = 3
 
 mapaAtual = 0
 
@@ -162,11 +170,23 @@ while loop:
     colisaoDireita = False
     colisaoEsquerdo = False
 
-    if mapaAtual in [2, 3, 4, 5, 7, 8, 11]:
-             
-     if "objeto" in mapa[mapaAtual]:
+    if "esqueleto" in mapa[mapaAtual]:  # só se existir no mapa atual
+        esqueleto = mapa[mapaAtual]["esqueleto"]
+        dx = jogador.centerx - esqueleto.centerx
+        dy = jogador.centery - esqueleto.centery
+        dist = (dx**2 + dy**2) ** 0.5
+        if dist != 0:
+            dx /= dist
+            dy /= dist
+            esqueleto.x += dx * vel_inimigo
+            esqueleto.y += dy * vel_inimigo
+        add((255, 255, 0), esqueleto)
+        if jogador.colliderect(mapa[mapaAtual]["esqueleto"]):
+            mapa[mapaAtual].pop("esqueleto")
+            vida -= 1
+
+    if "objeto" in mapa[mapaAtual]:
         add((255, 165, 0), mapa[mapaAtual]["objeto"])
-              
         if jogador.colliderect(mapa[mapaAtual]["objeto"]):
             mapa[mapaAtual].pop("objeto")
 
