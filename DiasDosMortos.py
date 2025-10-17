@@ -14,7 +14,7 @@ print(tamanhoTela)
 janela = pg.display.set_mode(tamanhoTela)
 
 velocidade = 9
-vel_inimigo = velocidade / 2
+vel_inimigo = velocidade / 3
 
 jY = 500
 jX = 500
@@ -152,13 +152,16 @@ vida = 3
 
 mapaAtual = 0
 
+colisaoTp9 = colisaoTp11 = False
+tempoMinTp = 0.5
+
 while loop:
     clock.tick(60)
     teclas = pg.key.get_pressed()
 
 
     for evento in pg.event.get():
-        if evento.type == pg.QUIT or teclas[pg.K_x]:
+        if evento.type == pg.QUIT or teclas[pg.K_x] or vida == 0:
             loop = False
 
     add((0,0,0))
@@ -286,11 +289,6 @@ while loop:
                 mapaAtual = 6
                 jogador.x = tamanhoTela[x] - 100
 
-            elif k == "S9TP":
-                
-                if k == "S9TP":
-                    mapaAtual = 10
-
             elif k == "S10Direita":
                 mapaAtual = 10
                 jogador.x = 0
@@ -304,16 +302,34 @@ while loop:
             elif k == "S11Esquerda":
                 mapaAtual = 9
                 jogador.x = tamanhoTela[x] - 100
-            elif k == "S11TP":
-                time.sleep(3)
-                if k == "S11TP":
-                    mapaAtual = 8
 
             elif k == "S12Esquerda":
                 mapaAtual = 10
                 jogador.x = tamanhoTela[x] - 100
             
-            
+    if mapaAtual == 8:
+        if jogador.colliderect(mapa[mapaAtual]["saidas"]["S9TP"]) and not colisaoTp9:
+            colisaoTp9 = True
+            inicioColisao = time.gmtime(time.time())[5]
+        elif jogador.colliderect(mapa[mapaAtual]["saidas"]["S9TP"]) and colisaoTp9:
+            segsAtuais = time.gmtime(time.time())[5]
+            if segsAtuais - inicioColisao >= tempoMinTp or (segsAtuais - inicioColisao < 0 and segsAtuais - inicioColisao >= tempoMinTp - 60):
+                mapaAtual = 10
+                colisaoTp9 = False
+        elif not jogador.colliderect(mapa[mapaAtual]["saidas"]["S9TP"]) and colisaoTp9:
+            colisaoTp9 = False
+        
+    elif mapaAtual == 10:
+        if jogador.colliderect(mapa[mapaAtual]["saidas"]["S11TP"]) and not colisaoTp11:
+            colisaoTp11 = True
+            inicioColisao = time.gmtime(time.time())[5]
+        elif jogador.colliderect(mapa[mapaAtual]["saidas"]["S11TP"]) and colisaoTp11:
+            segsAtuais = time.gmtime(time.time())[5]
+            if segsAtuais - inicioColisao >= tempoMinTp or (segsAtuais - inicioColisao < 0 and segsAtuais - inicioColisao <= tempoMinTp - 60):
+                mapaAtual = 8
+                colisaoTp11 = False
+        elif not jogador.colliderect(mapa[mapaAtual]["saidas"]["S11TP"]) and colisaoTp11:
+            colisaoTp11 = False
 
     for saida in mapa[mapaAtual]["saidas"].values():
         add((0,255,0), saida)
@@ -328,4 +344,3 @@ while loop:
         jogador.x -= velocidade
 
     pg.display.flip()
-
