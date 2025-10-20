@@ -2,6 +2,15 @@ import  pygame as pg
 import time 
 import threading
 
+pg.init()
+pg.mixer.init() 
+
+pg.mixer.music.load('MusicaFundo.mp3')
+pg.mixer.music.set_volume(0.5)  
+pg.mixer.music.play(-1)
+
+risada = pg.mixer.Sound('Risada.wav')
+
 janelaY = 850
 janelaX = 1500
 
@@ -173,7 +182,7 @@ while loop:
     colisaoDireita = False
     colisaoEsquerdo = False
 
-    if "esqueleto" in mapa[mapaAtual]:  # só se existir no mapa atual
+    if "esqueleto" in mapa[mapaAtual]: 
         esqueleto = mapa[mapaAtual]["esqueleto"]
         dx = jogador.centerx - esqueleto.centerx
         dy = jogador.centery - esqueleto.centery
@@ -185,7 +194,16 @@ while loop:
             esqueleto.y += dy * vel_inimigo
         add((255, 255, 0), esqueleto)
         if jogador.colliderect(mapa[mapaAtual]["esqueleto"]):
+            risada.play()
+            overlay = pg.Surface(tamanhoTela)
+            overlay.fill((255, 0, 0))
+            overlay.set_alpha(150) 
+            janela.blit(overlay, (0, 0))
+            pg.display.flip() 
+
+            pg.time.delay(500) 
             mapa[mapaAtual].pop("esqueleto")
+
             vida -= 1
 
     if "objeto" in mapa[mapaAtual]:
@@ -344,3 +362,4 @@ while loop:
         jogador.x -= velocidade
 
     pg.display.flip()
+
