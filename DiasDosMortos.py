@@ -30,6 +30,9 @@ jX = 500
 
 jogador = pg.Rect(jX,jY, 100, 100)
 
+txt = "Foi!!"
+fonte = pg.font.SysFont('Arial', 30)
+
 mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),},
          "paredes" : [pg.Rect(0, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
                       pg.Rect(tamanhoTela[x] * 0.6, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
@@ -164,6 +167,8 @@ mapaAtual = 0
 colisaoTp9 = colisaoTp11 = False
 tempoMinTp = 0.5
 
+enig = False
+
 while loop:
     clock.tick(60)
     teclas = pg.key.get_pressed()
@@ -197,20 +202,18 @@ while loop:
             risada.play()
             overlay = pg.Surface(tamanhoTela)
             overlay.fill((255, 0, 0))
-            overlay.set_alpha(150) 
             janela.blit(overlay, (0, 0))
             pg.display.flip() 
-
             pg.time.delay(500) 
             mapa[mapaAtual].pop("esqueleto")
-
             vida -= 1
 
     if "objeto" in mapa[mapaAtual]:
         add((255, 165, 0), mapa[mapaAtual]["objeto"])
         if jogador.colliderect(mapa[mapaAtual]["objeto"]):
             mapa[mapaAtual].pop("objeto")
-
+            enig = True
+              
     for parede in mapa[mapaAtual]["paredes"]:
         add((255,0,0),parede)
         if jogador.colliderect(parede):
@@ -244,6 +247,12 @@ while loop:
                     colisaoBaixo = True
                 else:
                     colisaoCima = True
+
+    if enig:
+        overlay = pg.Surface(tamanhoTela)
+        overlay.fill((0, 0, 0))
+        janela.blit(overlay, (0, 0))
+        pg.display.flip() 
 
     for k,v in mapa[mapaAtual]["saidas"].items():
         if jogador.colliderect(v):
