@@ -6,7 +6,6 @@ pg.init()
 pg.mixer.init() 
 
 pg.mixer.music.load('MusicaFundo.mp3')
-pg.mixer.music.set_volume(0.5)  
 pg.mixer.music.play(-1)
 
 risada = pg.mixer.Sound('Risada.wav')
@@ -248,12 +247,6 @@ while loop:
                 else:
                     colisaoCima = True
 
-    if enig:
-        overlay = pg.Surface(tamanhoTela)
-        overlay.fill((0, 0, 0))
-        janela.blit(overlay, (0, 0))
-        pg.display.flip() 
-
     for k,v in mapa[mapaAtual]["saidas"].items():
         if jogador.colliderect(v):
             if k == "S1Cima":
@@ -361,6 +354,12 @@ while loop:
     for saida in mapa[mapaAtual]["saidas"].values():
         add((0,255,0), saida)
 
+    if enig:
+        overlay = pg.Surface(tamanhoTela)
+        overlay.fill((0, 0, 0))
+        janela.blit(overlay, (0, 0))
+        pg.display.flip() 
+
     if teclas[pg.K_UP] and not colisaoCima:
         jogador.y -= velocidade
     if teclas[pg.K_DOWN] and not colisaoBaixo:
@@ -369,6 +368,8 @@ while loop:
         jogador.x += velocidade 
     if teclas[pg.K_LEFT] and not colisaoEsquerdo:
         jogador.x -= velocidade
+    if teclas[pg.K_k]:
+        enig = False
 
     pg.display.flip()
 
