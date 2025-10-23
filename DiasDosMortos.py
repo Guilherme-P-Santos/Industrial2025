@@ -57,7 +57,8 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                      pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
                      pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])],
          "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-         "enigma" : "Enigma 1"
+         "enigma" : "Enigma 1",
+         "Resposta" : "Resposta1"
          },
 
         {"saidas": {"S4Cima" : pg.Rect(0,0,tamanhoTela[x],1)}, 
@@ -67,7 +68,8 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                     pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
                     pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])],
          "objeto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-         "enigma" : "Enigma 2"
+         "enigma" : "Enigma 2",
+         "Resposta" : "Resposta2"
          },
 
         {"saidas" : {"S5Baixo" : pg.Rect(0,tamanhoTela[y],tamanhoTela[x],1),"S5Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),},
@@ -78,7 +80,8 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
                       pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Enigma 3"
+        "enigma" : "Enigma 3",
+        "Resposta" : "r"
          },
 
         {"saidas" : {"S6Cima" : pg.Rect(0,0,tamanhoTela[x],1),
@@ -94,7 +97,8 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
                       pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Enigma 4"
+        "enigma" : "Enigma 4",
+        "Resposta" : "Resposta4"
          },
 
         {"saidas" : {"S7Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),
@@ -118,7 +122,8 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(0 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y])],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Enigma 5"
+        "enigma" : "Enigma 5",
+        "Resposta" : "Resposta5"
          },
 
         {"saidas" : {"S9TP" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
@@ -127,7 +132,8 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
                       pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.3, tamanhoTela[y] * 0.3, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Enigma 6"
+        "enigma" : "Enigma 6",
+        "Resposta" : "Resposta6"
          },
 
         {"saidas" : {"S10Baixo" : pg.Rect(0,tamanhoTela[y],tamanhoTela[x],1),"S10Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),},
@@ -160,7 +166,8 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y])],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
         "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Enigma 7"
+        "enigma" : "Enigma 7",
+        "Resposta" : "Resposta7"
          },
 ]
 
@@ -223,6 +230,7 @@ while loop:
             add((255, 165, 0), mapa[mapaAtual]["objeto"])
             if jogador.colliderect(mapa[mapaAtual]["objeto"]):
                 mapa[mapaAtual].pop("objeto")
+                texto = ""
                 enig = True
                 
         for parede in mapa[mapaAtual]["paredes"]:
@@ -377,17 +385,17 @@ while loop:
         enigma = fonte.render(mapa[mapaAtual]["enigma"], True, (255,255,255))
         janela.blit(enigma, (tamanhoTela[x]*0.5, tamanhoTela[y]*0.5))
 
-        
-        #capturar texto digitado
-        #print(eventos)
         for evento in eventos:
             if evento.type == pg.KEYDOWN:
-                print("a")
-                texto += evento.unicode
+                if evento.key == pg.K_RETURN:
+                    if mapa[mapaAtual]["Resposta"]:
+                        if mapa[mapaAtual]["Resposta"] == texto:
+                            enig = False
+                elif evento.key == pg.K_BACKSPACE:
+                    texto = texto[:-1]
+                else:
+                    texto += evento.unicode
             
-            
-                
-
         pg.display.flip() 
 
     if teclas[pg.K_UP] and not colisaoCima:
@@ -398,8 +406,6 @@ while loop:
         jogador.x += velocidade 
     if teclas[pg.K_LEFT] and not colisaoEsquerdo:
         jogador.x -= velocidade
-    if teclas[pg.K_k]:
-        enig = False
 
     pg.display.flip()
 
