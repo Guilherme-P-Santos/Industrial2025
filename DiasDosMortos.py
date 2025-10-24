@@ -8,7 +8,7 @@ os.system("cls")
 pg.init()
 pg.mixer.init() 
 
-pg.mixer.music.load('MusicaFundo.mp3')
+pg.mixer.music.load('Fundos.mp3')
 pg.mixer.music.play(-1)
 
 risada = pg.mixer.Sound('Risadas.wav')
@@ -404,13 +404,13 @@ while loop:
 
         
         enigma = fonte.render(mapa[mapaAtual]["enigma"], True, (255,255,255))
-        janela.blit(enigma, (tamanhoTela[x]*0.3, tamanhoTela[y]*0.3))
+        janela.blit(enigma, (tamanhoTela[x]*0.25, tamanhoTela[y]*0.3))
 
         enigma = fonte.render(mapa[mapaAtual]["enigma2"], True, (255,255,255))
-        janela.blit(enigma, (tamanhoTela[x]*0.3, tamanhoTela[y]*0.4))
+        janela.blit(enigma, (tamanhoTela[x]*0.25, tamanhoTela[y]*0.4))
 
         enigma = fonte.render(mapa[mapaAtual]["enigma3"], True, (255,255,255))
-        janela.blit(enigma, (tamanhoTela[x]*0.3, tamanhoTela[y]*0.5))
+        janela.blit(enigma, (tamanhoTela[x]*0.25, tamanhoTela[y]*0.5))
 
         for evento in eventos:
             if evento.type == pg.KEYDOWN:
