@@ -2,6 +2,7 @@ import  pygame as pg
 import time 
 import os 
 
+
 os.system("cls")
 
 pg.init()
@@ -10,7 +11,7 @@ pg.mixer.init()
 pg.mixer.music.load('MusicaFundo.mp3')
 pg.mixer.music.play(-1)
 
-risada = pg.mixer.Sound('Risada.wav')
+risada = pg.mixer.Sound('Risadas.wav')
 
 janelaY = 850
 janelaX = 1500
@@ -24,7 +25,7 @@ print(tamanhoTela)
 janela = pg.display.set_mode(tamanhoTela)
 
 velocidade = 9
-vel_inimigo = velocidade / 3
+vel_inimigo = 4
 
 jY = 500
 jX = 500
@@ -57,8 +58,10 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                      pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
                      pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])],
          "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-         "enigma" : "Enigma 1",
-         "Resposta" : "Resposta1"
+         "enigma" : "Sou contas que se deslizam entre dedos em prece,",
+         "enigma2": "acompanho fé e saudade na beira do altar.",
+         "enigma3": "Rezo por quem partiu — quem sou, você reconhece?",
+         "Resposta" : "terço"
          },
 
         {"saidas": {"S4Cima" : pg.Rect(0,0,tamanhoTela[x],1)}, 
@@ -68,8 +71,10 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                     pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
                     pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])],
          "objeto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-         "enigma" : "Enigma 2",
-         "Resposta" : "Resposta2"
+         "enigma" : "Guardam sorrisos e olhos que já brilharam, pousadas no ofício,",
+         "enigma2": "recebem flores e memória. São janelas do passado que em silêncio falam.",
+         "enigma3": "",
+         "Resposta" : "fotos"
          },
 
         {"saidas" : {"S5Baixo" : pg.Rect(0,tamanhoTela[y],tamanhoTela[x],1),"S5Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),},
@@ -80,8 +85,10 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
                       pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Enigma 3",
-        "Resposta" : "r"
+        "enigma" : "Cheiro e cor que guiam caminhos ao cair da noite,",
+        "enigma2": "pétalas que formam estrada, oferenda que aconchega.",
+        "enigma3": "",
+        "Resposta" : "flores"
          },
 
         {"saidas" : {"S6Cima" : pg.Rect(0,0,tamanhoTela[x],1),
@@ -97,8 +104,10 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
                       pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Enigma 4",
-        "Resposta" : "Resposta4"
+        "enigma" : "De cera acesa, tremulo luz na escuridão,",
+        "enigma2": "ilumino lembranças, aqueço versos e saudade.",
+        "enigma3" : "",
+        "Resposta" : "velas"
          },
 
         {"saidas" : {"S7Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),
@@ -122,8 +131,10 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(0 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y])],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Enigma 5",
-        "Resposta" : "Resposta5"
+        "enigma" : "Branco e calmo, sorriso esculpido na face,",
+        "enigma2": " lembrança do corpo que partiu, dança sem dor",
+        "enigma3": "",
+        "Resposta" : "caveiras"
          },
 
         {"saidas" : {"S9TP" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
@@ -132,8 +143,10 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
                       pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.3, tamanhoTela[y] * 0.3, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Enigma 6",
-        "Resposta" : "Resposta6"
+        "enigma" : "Em copos ofereço força, brindo aos que se foram,",
+        "enigma2": "às vezes doce, às vezes amargo, nos altares eu fico",
+        "enigma3": "",
+        "Resposta" : "bebidas"
          },
 
         {"saidas" : {"S10Baixo" : pg.Rect(0,tamanhoTela[y],tamanhoTela[x],1),"S10Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),},
@@ -166,8 +179,10 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
                       pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y])],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
         "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Enigma 7",
-        "Resposta" : "Resposta7"
+        "enigma" : "Redondo e doce, com cruzinha por enfeite,",
+        "enigma2": "cheiro de forno e lembrança de casa por perto.",
+        "enigma3":"",
+        "Resposta" : "pao dos muertos"
          },
 ]
 
@@ -176,6 +191,7 @@ loop = True
 clock = pg.time.Clock()
 
 vida = 3
+itens = 14
 
 mapaAtual = 0
 
@@ -183,6 +199,7 @@ colisaoTp9 = colisaoTp11 = False
 tempoMinTp = 0.5
 
 enig = False
+mostrar_erro = False
 
 texto = ""
 
@@ -191,11 +208,11 @@ while loop:
     teclas = pg.key.get_pressed()
     eventos = pg.event.get()
 
-    for evento in eventos:
-        if evento.type == pg.QUIT or teclas[pg.K_x] or vida == 0:
-            loop = False
-
     if not enig:
+        for evento in eventos:
+            if evento.type == pg.QUIT or teclas[pg.K_x] and teclas[pg.K_i] and teclas[pg.K_e] and teclas[pg.K_t]:
+                loop = False
+
         add((0,0,0))
 
         add((255,255,255),jogador)
@@ -210,7 +227,7 @@ while loop:
             dx = jogador.centerx - esqueleto.centerx
             dy = jogador.centery - esqueleto.centery
             dist = (dx**2 + dy**2) ** 0.5
-            if dist != 0 and enig == False:
+            if dist != 0 and enig == False and itens != 0:
                 dx /= dist
                 dy /= dist
                 esqueleto.x += dx * vel_inimigo
@@ -225,10 +242,13 @@ while loop:
                 pg.time.delay(500) 
                 mapa[mapaAtual].pop("esqueleto")
                 vida -= 1
+                print(vida)
 
         if "objeto" in mapa[mapaAtual]:
             add((255, 165, 0), mapa[mapaAtual]["objeto"])
             if jogador.colliderect(mapa[mapaAtual]["objeto"]):
+                itens -= 1
+                print(itens)
                 mapa[mapaAtual].pop("objeto")
                 texto = ""
                 enig = True
@@ -380,21 +400,44 @@ while loop:
 
         txt = fonte.render(texto, True, (255,255,255))
         janela.blit(txt, (tamanhoTela[x]*0.5, tamanhoTela[y]*0.7))
+        txt2 = texto.lower()
 
         
         enigma = fonte.render(mapa[mapaAtual]["enigma"], True, (255,255,255))
-        janela.blit(enigma, (tamanhoTela[x]*0.5, tamanhoTela[y]*0.5))
+        janela.blit(enigma, (tamanhoTela[x]*0.3, tamanhoTela[y]*0.3))
+
+        enigma = fonte.render(mapa[mapaAtual]["enigma2"], True, (255,255,255))
+        janela.blit(enigma, (tamanhoTela[x]*0.3, tamanhoTela[y]*0.4))
+
+        enigma = fonte.render(mapa[mapaAtual]["enigma3"], True, (255,255,255))
+        janela.blit(enigma, (tamanhoTela[x]*0.3, tamanhoTela[y]*0.5))
 
         for evento in eventos:
             if evento.type == pg.KEYDOWN:
                 if evento.key == pg.K_RETURN:
                     if mapa[mapaAtual]["Resposta"]:
-                        if mapa[mapaAtual]["Resposta"] == texto:
+                        if mapa[mapaAtual]["Resposta"] == txt2:
+                            itens -= 1
                             enig = False
+                        else:
+                            inicio = pg.time.get_ticks()
+                            espera = 500
+
+                            mostrar_erro = True
+
                 elif evento.key == pg.K_BACKSPACE:
                     texto = texto[:-1]
                 else:
                     texto += evento.unicode
+        
+        if mostrar_erro:
+            agora = pg.time.get_ticks()
+            if agora - inicio < espera:
+                erro = fonte.render("Resposta Errada", True, (255,0,0))
+                janela.blit(erro, (tamanhoTela[x]*0.5, tamanhoTela[y]*0.6))
+            else:
+                mostrar_erro = False
+
             
         pg.display.flip() 
 
@@ -406,6 +449,16 @@ while loop:
         jogador.x += velocidade 
     if teclas[pg.K_LEFT] and not colisaoEsquerdo:
         jogador.x -= velocidade
+
+    if vida == 0:
+        print("a")
+        overlay = pg.Surface(tamanhoTela)
+        overlay.fill((255, 0, 0))
+        janela.blit(overlay, (0, 0))
+    elif itens == 0:
+        overlay = pg.Surface(tamanhoTela)
+        overlay.fill((0, 255, 0))
+        janela.blit(overlay, (0, 0))
 
     pg.display.flip()
 
