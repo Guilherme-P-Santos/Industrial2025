@@ -11,7 +11,7 @@ pg.mixer.init()
 pg.mixer.music.load('Fundos.mp3')
 pg.mixer.music.play(-1)
 
-risada = pg.mixer.Sound('Risadas.wav')
+risada = pg.mixer.Sound('Risada.wav')
 
 janelaY = 850
 janelaX = 1500
@@ -31,6 +31,12 @@ jY = 500
 jX = 500
 
 jogador = pg.Rect(jX,jY, 100, 100)
+
+coracoes = [
+    pg.Rect(tamanhoTela[x] * 0.8, tamanhoTela[x] * 0.0025, tamanhoTela[x] * 0.025, tamanhoTela[x] * 0.025),
+    pg.Rect(tamanhoTela[x] * 0.835, tamanhoTela[x] * 0.0025, tamanhoTela[x] * 0.025, tamanhoTela[x] * 0.025),
+    pg.Rect(tamanhoTela[x] * 0.87, tamanhoTela[x] * 0.0025, tamanhoTela[x] * 0.025, tamanhoTela[x] * 0.025)
+]
 
 fonte = pg.font.SysFont('Arial', 30)
 
@@ -186,6 +192,8 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
          },
 ]
 
+salasComitem = [2, 3, 4, 5, 7, 8, 11] # considerando a 1a sala como 0
+
 add = janela.fill
 loop = True
 clock = pg.time.Clock()
@@ -202,6 +210,12 @@ enig = False
 mostrar_erro = False
 
 texto = ""
+
+textoItens = fonte.render("Itens: ", True, (255, 255, 255))
+largTextoItens = textoItens.get_width()
+
+sepItens = fonte.render(", ", True, (255, 255, 255))
+largSepItens = sepItens.get_width()
 
 while loop:
     clock.tick(60)
@@ -393,6 +407,39 @@ while loop:
 
         for saida in mapa[mapaAtual]["saidas"].values():
             add((0,255,0), saida)
+
+        # exibir itens que faltam
+        janela.blit(fonte.render("Itens: ", True, (255, 255, 255)), (tamanhoTela[x] * 0.05, tamanhoTela[x] * 0.0025))
+        i = 0 # de 0 até 6
+        somaLarguras = largTextoItens
+
+        print()
+
+        for indexSala in salasComitem:
+            if mapa[indexSala].get("objeto") and not enig:
+                item = fonte.render(mapa[indexSala]["Resposta"], True, (255, 255, 255))
+            else:
+                item = fonte.render(mapa[indexSala]["Resposta"], True, (127, 127, 127))
+
+            # print(tamanhoTela[x] / item.get_width())
+
+            janela.blit(item, (tamanhoTela[x] * 0.05 + somaLarguras, tamanhoTela[x] * 0.0025))
+            
+            somaLarguras += item.get_width()
+            if i < 6:
+                janela.blit(sepItens, (tamanhoTela[x] * 0.05 + somaLarguras, tamanhoTela[x] * 0.0025))
+                somaLarguras += largSepItens
+            i+=1
+        print()
+
+        # exibir vidas 
+        for i in range(3, 0, -1): # 3 2 1
+            j = 3 - i # 0 1 2
+            if i > vida:
+                add((127, 127, 127), coracoes[j])
+            else:
+                add((0, 0, 255), coracoes[j])
+
     else:
         overlay = pg.Surface(tamanhoTela)
         overlay.fill((0, 0, 0))
@@ -449,7 +496,7 @@ while loop:
         jogador.x += velocidade 
     if teclas[pg.K_LEFT] and not colisaoEsquerdo:
         jogador.x -= velocidade
-
+    
     if vida == 0:
         print("a")
         overlay = pg.Surface(tamanhoTela)
