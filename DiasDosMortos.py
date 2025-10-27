@@ -32,6 +32,8 @@ jX = 500
 
 jogador = pg.Rect(jX,jY, 100, 100)
 
+
+
 coracoes = [
     pg.Rect(tamanhoTela[x] * 0.8, tamanhoTela[x] * 0.0025, tamanhoTela[x] * 0.025, tamanhoTela[x] * 0.025),
     pg.Rect(tamanhoTela[x] * 0.835, tamanhoTela[x] * 0.0025, tamanhoTela[x] * 0.025, tamanhoTela[x] * 0.025),
@@ -217,6 +219,18 @@ largTextoItens = textoItens.get_width()
 sepItens = fonte.render(", ", True, (255, 255, 255))
 largSepItens = sepItens.get_width()
 
+
+
+coracaoImg = pg.image.load("coração.png").convert_alpha()
+coracaoImg = pg.transform.scale(coracaoImg, (int(tamanhoTela[1] * 0.1), int(tamanhoTela[1] * 0.1)))
+
+coracaoGreyImg = pg.image.load("coracaoPRETO.png").convert_alpha()
+coracaoGreyImg = pg.transform.scale(coracaoGreyImg, (int(tamanhoTela[1] * 0.1), int(tamanhoTela[1] * 0.1)))
+
+corJogador = (255,255,255)
+
+
+mov = False
 while loop:
     clock.tick(60)
     teclas = pg.key.get_pressed()
@@ -229,7 +243,28 @@ while loop:
 
         add((0,0,0))
 
-        add((255,255,255),jogador)
+
+        mov = False
+        if teclas[pg.K_UP] and not colisaoCima:
+            jogador.y -= velocidade
+            corJogador = (255,0,0)
+            mov = True
+        if teclas[pg.K_DOWN] and not colisaoBaixo:
+            jogador.y += velocidade
+            corJogador = (0,255,0)
+            mov = True
+        if teclas[pg.K_RIGHT] and not colisaoDireita:
+            jogador.x += velocidade 
+            corJogador = (0,0,255)
+            mov = True
+        if teclas[pg.K_LEFT] and not colisaoEsquerdo:
+            jogador.x -= velocidade
+            corJogador = (255,255,0)
+            mov = True
+        if not mov:
+            corJogador = (255,255,255) 
+
+        pg.draw.rect(janela, corJogador, jogador)
 
         colisaoCima = False
         colisaoBaixo = False
@@ -436,9 +471,9 @@ while loop:
         for i in range(3, 0, -1): # 3 2 1
             j = 3 - i # 0 1 2
             if i > vida:
-                add((127, 127, 127), coracoes[j])
+                janela.blit(coracaoGreyImg, coracoes[j])
             else:
-                add((0, 0, 255), coracoes[j])
+                janela.blit(coracaoImg, coracoes[j])
 
     else:
         overlay = pg.Surface(tamanhoTela)
@@ -487,15 +522,6 @@ while loop:
 
             
         pg.display.flip() 
-
-    if teclas[pg.K_UP] and not colisaoCima:
-        jogador.y -= velocidade
-    if teclas[pg.K_DOWN] and not colisaoBaixo:
-        jogador.y += velocidade
-    if teclas[pg.K_RIGHT] and not colisaoDireita:
-        jogador.x += velocidade 
-    if teclas[pg.K_LEFT] and not colisaoEsquerdo:
-        jogador.x -= velocidade
     
     if vida == 0:
         print("a")
@@ -508,4 +534,3 @@ while loop:
         janela.blit(overlay, (0, 0))
 
     pg.display.flip()
-
