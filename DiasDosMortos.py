@@ -1,4 +1,4 @@
-import  pygame as pg 
+import pygame as pg 
 import time 
 import os 
 
@@ -196,9 +196,36 @@ mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.R
 
 salasComitem = [2, 3, 4, 5, 7, 8, 11] # considerando a 1a sala como 0
 
+imgItens = [
+    pg.image.load("terço.png").convert_alpha(),
+    pg.image.load("retrato.png").convert_alpha(),
+    pg.image.load("flor.png").convert_alpha(),
+    pg.image.load("vela.png").convert_alpha(),
+    pg.image.load("caveiraMexicana.png").convert_alpha(),
+    pg.image.load("tequila.png").convert_alpha(),
+    pg.image.load("pãodMuerto.png").convert_alpha(),
+] 
+
+for i in range(len(imgItens)):
+    imgItens[i] = pg.transform.scale(imgItens[i], (int(tamanhoTela[y] * 0.1), int(tamanhoTela[y] * 0.1)))
+
+imgGreyItens = [
+    pg.image.load("terçoGREY.jpg").convert_alpha(),
+    pg.image.load("retratoGREY.jpg").convert_alpha(),
+    pg.image.load("florGREY.jpg").convert_alpha(),
+    pg.image.load("velaGREY.jpg").convert_alpha(),
+    pg.image.load("caveMexiGREY.jpg").convert_alpha(),
+    pg.image.load("tequilaGREY.jpg").convert_alpha(),
+    pg.image.load("pãoGREY.jpg").convert_alpha(),
+] 
+
+for i in range(len(imgGreyItens)):
+    imgGreyItens[i] = pg.transform.scale(imgGreyItens[i], (int(tamanhoTela[y] * 0.1), int(tamanhoTela[y] * 0.1)))
+
 add = janela.fill
 loop = True
 clock = pg.time.Clock()
+
 
 vida = 3
 itens = 14
@@ -216,10 +243,8 @@ texto = ""
 textoItens = fonte.render("Itens: ", True, (255, 255, 255))
 largTextoItens = textoItens.get_width()
 
-sepItens = fonte.render(", ", True, (255, 255, 255))
+sepItens = fonte.render(" ", True, (255, 255, 255))
 largSepItens = sepItens.get_width()
-
-
 
 coracaoImg = pg.image.load("coração.png").convert_alpha()
 coracaoImg = pg.transform.scale(coracaoImg, (int(tamanhoTela[1] * 0.1), int(tamanhoTela[1] * 0.1)))
@@ -291,13 +316,11 @@ while loop:
                 pg.time.delay(500) 
                 mapa[mapaAtual].pop("esqueleto")
                 vida -= 1
-                print(vida)
 
         if "objeto" in mapa[mapaAtual]:
             add((255, 165, 0), mapa[mapaAtual]["objeto"])
             if jogador.colliderect(mapa[mapaAtual]["objeto"]):
                 itens -= 1
-                print(itens)
                 mapa[mapaAtual].pop("objeto")
                 texto = ""
                 enig = True
@@ -448,24 +471,20 @@ while loop:
         i = 0 # de 0 até 6
         somaLarguras = largTextoItens
 
-        print()
-
         for indexSala in salasComitem:
-            if mapa[indexSala].get("objeto") and not enig:
-                item = fonte.render(mapa[indexSala]["Resposta"], True, (255, 255, 255))
-            else:
-                item = fonte.render(mapa[indexSala]["Resposta"], True, (127, 127, 127))
-
-            # print(tamanhoTela[x] / item.get_width())
+            if mapa[indexSala].get("enigma"): # Item ainda não obtido (agora o enigma é excluído quando a pessoa acerta)
+                item = imgGreyItens[i]
+            else: # item já obtido
+                item = imgItens[i]
 
             janela.blit(item, (tamanhoTela[x] * 0.05 + somaLarguras, tamanhoTela[x] * 0.0025))
             
+
             somaLarguras += item.get_width()
             if i < 6:
                 janela.blit(sepItens, (tamanhoTela[x] * 0.05 + somaLarguras, tamanhoTela[x] * 0.0025))
                 somaLarguras += largSepItens
             i+=1
-        print()
 
         # exibir vidas 
         for i in range(3, 0, -1): # 3 2 1
@@ -501,6 +520,9 @@ while loop:
                         if mapa[mapaAtual]["Resposta"] == txt2:
                             itens -= 1
                             enig = False
+                            mapa[mapaAtual].pop("enigma")
+                            mapa[mapaAtual].pop("enigma2")
+                            mapa[mapaAtual].pop("enigma3")
                         else:
                             inicio = pg.time.get_ticks()
                             espera = 500
@@ -524,7 +546,6 @@ while loop:
         pg.display.flip() 
     
     if vida == 0:
-        print("a")
         overlay = pg.Surface(tamanhoTela)
         overlay.fill((255, 0, 0))
         janela.blit(overlay, (0, 0))
