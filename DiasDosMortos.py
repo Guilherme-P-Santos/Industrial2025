@@ -1,7 +1,7 @@
 import pygame as pg 
 import time 
 import os 
-
+from PIL import Image, ImageSequence
 
 os.system("cls")
 
@@ -43,156 +43,168 @@ coracoes = [
 fonte = pg.font.SysFont('Arial', 30)
 
 mapa = [{"saidas" : {"S1Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S1Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),},
-         "paredes" : [pg.Rect(0, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.6, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(0,0,tamanhoTela[x] * 0.03, tamanhoTela[y]), 
-                      pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)]},
+         "paredes" : [pg.Rect(0, 0, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.10), 
+                      pg.Rect(tamanhoTela[x] * 0.58, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.10), 
+                      pg.Rect(0,0,tamanhoTela[x] * 0.04, tamanhoTela[y]), 
+                      pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.1 ,1600, tamanhoTela[x] * 0.11), 
+                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.25), 
+                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.47, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)
+                      ],
+         "mapa": pg.image.load("mapaa9.png")},
 
         {"saidas" : {"S2Cima" : pg.Rect(0,0,tamanhoTela[x],1),"S2Esquerda" : pg.Rect(0, 0, 1, tamanhoTela[y]),},
-         "paredes" : [pg.Rect(0, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.6, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(0, tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
-                      pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y]),],
-        "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
+         "paredes" : [pg.Rect(0, 0, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.10), 
+                      pg.Rect(tamanhoTela[x] * 0.58, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.10), 
+                      pg.Rect(0 , 0, tamanhoTela[x] * 0.034, tamanhoTela[y] * 0.24), 
+                      pg.Rect(0, tamanhoTela[y] * 0.46, tamanhoTela[x] * 0.034, tamanhoTela[y] * 0.45),
+                      pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.1 ,1600, tamanhoTela[x] * 0.11), 
+                      pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y]),
+                      ],
+        "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
+        "mapa": pg.image.load("mapaa10.png")},
 
         {"saidas": {"S3Cima" : pg.Rect(0,0,tamanhoTela[x],1)}, 
-         "paredes": [pg.Rect(0, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                     pg.Rect(tamanhoTela[x] * 0.6, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                     pg.Rect(0,0,tamanhoTela[x] * 0.03, tamanhoTela[y]),
-                     pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
-                     pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])],
+         "paredes": [pg.Rect(0, 0, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.10), 
+                     pg.Rect(tamanhoTela[x] * 0.58, 0, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.10), 
+                     pg.Rect(0,0,tamanhoTela[x] * 0.04, tamanhoTela[y]),
+                     pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.09 ,1600, tamanhoTela[x] * 0.03), 
+                     pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])
+                     ],
          "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-         "enigma" : "Sou contas que se deslizam entre dedos em prece,",
-         "enigma2": "acompanho fé e saudade na beira do altar.",
-         "enigma3": "Rezo por quem partiu — quem sou, você reconhece?",
-         "Resposta" : "terço"
+        "enigma" : pg.image.load("eTERCOo.png"),
+         "Resposta" : "terço",
+         "mapa": pg.image.load("mapaa11.png")
          },
 
         {"saidas": {"S4Cima" : pg.Rect(0,0,tamanhoTela[x],1)}, 
-         "paredes": [pg.Rect(0, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                    pg.Rect(tamanhoTela[x] * 0.6, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                    pg.Rect(0,0,tamanhoTela[x] * 0.03, tamanhoTela[y]),
-                    pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
-                    pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])],
+         "paredes": [pg.Rect(0, 0, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.10), 
+                     pg.Rect(tamanhoTela[x] * 0.58, 0, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.10), 
+                     pg.Rect(0,0,tamanhoTela[x] * 0.04, tamanhoTela[y]),
+                     pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.09 ,1600, tamanhoTela[x] * 0.03), 
+                     pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])
+                     ],
          "objeto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-         "enigma" : "Guardam sorrisos e olhos que já brilharam, pousadas no ofício,",
-         "enigma2": "recebem flores e memória. São janelas do passado que em silêncio falam.",
-         "enigma3": "",
-         "Resposta" : "fotos"
+        "enigma" : pg.image.load("eFOOTO.png"),
+         "Resposta" : "fotos",
+         "mapa": pg.image.load("mapaa12.png")
          },
 
         {"saidas" : {"S5Baixo" : pg.Rect(0,tamanhoTela[y],tamanhoTela[x],1),"S5Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),},
-         "paredes" : [pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.6, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(0,0,tamanhoTela[x] * 0.03, tamanhoTela[y]), 
-                      pg.Rect(0,0,1600, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
+         "paredes" : [pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.1, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.10), 
+                      pg.Rect(tamanhoTela[x] * 0.59, tamanhoTela[y] - tamanhoTela[x] * 0.1, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.10), 
+                      pg.Rect(0,0,tamanhoTela[x] * 0.04, tamanhoTela[y]), 
+                      pg.Rect(0,0,1600, tamanhoTela[x] * 0.09), 
+                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.25), 
+                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.45, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)
+                      ],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Cheiro e cor que guiam caminhos ao cair da noite,",
-        "enigma2": "pétalas que formam estrada, oferenda que aconchega.",
-        "enigma3": "",
-        "Resposta" : "flores"
+        "enigma" : pg.image.load("eFLOR.png"),
+        "Resposta" : "flores",
+        "mapa": pg.image.load("mapaa5.png")
          },
 
         {"saidas" : {"S6Cima" : pg.Rect(0,0,tamanhoTela[x],1),
                      "S6Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),
                      "S6Baixo" : pg.Rect(0,tamanhoTela[y],tamanhoTela[x],1),
                      "S6Esquerda" : pg.Rect(0, 0, 1, tamanhoTela[y]),},
-         "paredes" : [pg.Rect(0, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.6, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.6, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(0 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
-                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
+         "paredes" : [pg.Rect(0, 0, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.10), 
+                      pg.Rect(tamanhoTela[x] * 0.59, 0, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.10), 
+                      pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.09, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.1), 
+                      pg.Rect(tamanhoTela[x] * 0.59, tamanhoTela[y] - tamanhoTela[x] * 0.09, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.1), 
+                      pg.Rect(0 , 0, tamanhoTela[x] * 0.04, tamanhoTela[y] * 0.25), 
+                      pg.Rect(0 , tamanhoTela[y] * 0.46, tamanhoTela[x] * 0.04, tamanhoTela[y] * 0.4),
+                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.25), 
+                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.47, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)
+                      ],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "De cera acesa, tremulo luz na escuridão,",
-        "enigma2": "ilumino lembranças, aqueço versos e saudade.",
-        "enigma3" : "",
-        "Resposta" : "velas"
+        "enigma" : pg.image.load("eVELA.png"),
+        "Resposta" : "velas",
+        "mapa": pg.image.load("mapaa6.png")
          },
 
         {"saidas" : {"S7Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),
                      "S7Baixo" : pg.Rect(0,tamanhoTela[y],tamanhoTela[x],1),
                      "S7Esquerda" : pg.Rect(0, 0, 1, tamanhoTela[y]),},
-         "paredes" : [pg.Rect(0, 0, tamanhoTela[x], tamanhoTela[x] * 0.03), 
-                      pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.6, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(0 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
-                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
-         "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
+         "paredes" : [pg.Rect(0, 0, tamanhoTela[x], tamanhoTela[x] * 0.1), 
+                      pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.092, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.2), 
+                      pg.Rect(tamanhoTela[x] * 0.59, tamanhoTela[y] - tamanhoTela[x] * 0.092, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.11), 
+                      pg.Rect(0 , 0, tamanhoTela[x] * 0.04, tamanhoTela[y] * 0.26), 
+                      pg.Rect(0 , tamanhoTela[y] * 0.47, tamanhoTela[x] * 0.04, tamanhoTela[y] * 0.4),
+                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.25), 
+                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.47, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)
+                      ],
+         "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
+         "mapa": pg.image.load("mapaa7.png")},
         
         {"saidas" : {"S8Baixo" : pg.Rect(0,tamanhoTela[y],tamanhoTela[x],1),
                      "S8Esquerda" : pg.Rect(0, 0, 1, tamanhoTela[y]),},
-         "paredes" : [pg.Rect(0, 0, tamanhoTela[x], tamanhoTela[x] * 0.03), 
-                      pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.6, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(0 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
-                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y])],
+         "paredes" : [pg.Rect(0, 0, tamanhoTela[x], tamanhoTela[x] * 0.1), 
+                      pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.09, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.1), 
+                      pg.Rect(tamanhoTela[x] * 0.59, tamanhoTela[y] - tamanhoTela[x] * 0.09, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.1), 
+                      pg.Rect(0 , 0, tamanhoTela[x] * 0.04, tamanhoTela[y] * 0.25), 
+                      pg.Rect(0 , tamanhoTela[y] * 0.47, tamanhoTela[x] * 0.04, tamanhoTela[y] * 0.6),
+                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y])
+                      ],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Branco e calmo, sorriso esculpido na face,",
-        "enigma2": " lembrança do corpo que partiu, dança sem dor",
-        "enigma3": "",
-        "Resposta" : "caveiras"
+        "enigma" : pg.image.load("eCAVEIRA.png"),
+        "Resposta" : "caveiras",
+        "mapa": pg.image.load("mapaa8.png")
          },
 
         {"saidas" : {"S9TP" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
-         "paredes" : [pg.Rect(0, 0, tamanhoTela[x], tamanhoTela[x] * 0.03), 
+         "paredes" : [pg.Rect(0, 0, tamanhoTela[x], tamanhoTela[x] * 0.11), 
                       pg.Rect(0,0,tamanhoTela[x] * 0.03, tamanhoTela[y]),
-                      pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.03 ,1600, tamanhoTela[x] * 0.03), 
+                      pg.Rect(0,tamanhoTela[y] - tamanhoTela[x] * 0.09 ,1600, tamanhoTela[x] * 0.11), 
                       pg.Rect(tamanhoTela[x] * 0.97,0,tamanhoTela[x] * 0.03, tamanhoTela[y])],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.3, tamanhoTela[y] * 0.3, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Em copos ofereço força, brindo aos que se foram,",
-        "enigma2": "às vezes doce, às vezes amargo, nos altares eu fico",
-        "enigma3": "",
-        "Resposta" : "bebidas"
+        "enigma" : pg.image.load("eBEBIDA.png"),
+        "Resposta" : "bebidas",
+        "mapa": pg.image.load("mapa1.png")
          },
 
         {"saidas" : {"S10Baixo" : pg.Rect(0,tamanhoTela[y],tamanhoTela[x],1),"S10Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]),},
-         "paredes" : [pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.6, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(0,0,tamanhoTela[x] * 0.03, tamanhoTela[y]), 
-                      pg.Rect(0,0,1600, tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
-         "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
+         "paredes" : [pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.092, tamanhoTela[x] * 0.42, tamanhoTela[x] * 0.3), 
+                      pg.Rect(tamanhoTela[x] * 0.59, tamanhoTela[y] - tamanhoTela[x] * 0.092, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.3), 
+                      pg.Rect(0,0,tamanhoTela[x] * 0.04, tamanhoTela[y]), 
+                      pg.Rect(0,0,1600, tamanhoTela[x] * 0.1), 
+                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.26), 
+                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.47, tamanhoTela[x] * 0.03, tamanhoTela[y])
+                      ],
+         "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
+         "mapa": pg.image.load("mapa2.png")},
+         
 
         {"saidas" : {"S11Direita" : pg.Rect(tamanhoTela[x], 0, 1, tamanhoTela[y]), 
                      "S11Esquerda" : pg.Rect(0, 0, 1, tamanhoTela[y]),
                      "S11TP" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
-         "paredes" : [pg.Rect(0, 0, tamanhoTela[x], tamanhoTela[x] * 0.03), 
-                      pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x], tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.6, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(0 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
-                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4)],
-         "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05)},
+         "paredes" : [pg.Rect(0, 0, tamanhoTela[x], tamanhoTela[x] * 0.1), 
+                      pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.092, tamanhoTela[x], tamanhoTela[x]), 
+                      pg.Rect(tamanhoTela[x] * 0.97, 0 , tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.25), 
+                      pg.Rect(0 , 0, tamanhoTela[x] * 0.04, tamanhoTela[y] * 0.26), 
+                      pg.Rect(0 , tamanhoTela[y] * 0.47, tamanhoTela[x] * 0.04, tamanhoTela[y]),
+                      #pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
+                      pg.Rect(tamanhoTela[x] * 0.97 , tamanhoTela[y] * 0.47, tamanhoTela[x] * 0.4, tamanhoTela[y])
+                      ],
+         "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
+         "mapa": pg.image.load("mapa3.png")},
 
         {"saidas" : {"S12Esquerda" : pg.Rect(0, 0, 1, tamanhoTela[y]),},
-         "paredes" : [pg.Rect(0, 0, tamanhoTela[x], tamanhoTela[x] * 0.03), 
-                      pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x], tamanhoTela[x] * 0.03), 
-                      pg.Rect(tamanhoTela[x] * 0.6, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x] * 0.03), 
-                      pg.Rect(0 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.3), 
-                      pg.Rect(0 , tamanhoTela[y] * 0.6, tamanhoTela[x] * 0.03, tamanhoTela[y] * 0.4),
-                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y])],
+         "paredes" : [pg.Rect(0, 0, tamanhoTela[x], tamanhoTela[x] * 0.1), 
+                      pg.Rect(0, tamanhoTela[y] - tamanhoTela[x] * 0.092, tamanhoTela[x], tamanhoTela[x]), 
+                      #pg.Rect(tamanhoTela[x] * 0.6, tamanhoTela[y] - tamanhoTela[x] * 0.03, tamanhoTela[x] * 0.4, tamanhoTela[x]), 
+                      pg.Rect(0 , 0, tamanhoTela[x] * 0.04, tamanhoTela[y] * 0.26), 
+                      pg.Rect(0 , tamanhoTela[y] * 0.47, tamanhoTela[x] * 0.04, tamanhoTela[y]),
+                      pg.Rect(tamanhoTela[x] * 0.97 , 0, tamanhoTela[x] * 0.03, tamanhoTela[y])
+                      ],
         "objeto" :  pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
         "esqueleto" : pg.Rect(tamanhoTela[x] * 0.5, tamanhoTela[y] * 0.5, tamanhoTela[x]*0.05, tamanhoTela[x] * 0.05),
-        "enigma" : "Redondo e doce, com cruzinha por enfeite,",
-        "enigma2": "cheiro de forno e lembrança de casa por perto.",
-        "enigma3":"",
-        "Resposta" : "pao dos muertos"
+        "enigma" : pg.image.load("ePAO.png"),
+        "Resposta" : "pao dos muertos",
+        "mapa": pg.image.load("mapaa4.png")
          },
 ]
+
+mapaAtual = 0
 
 salasComitem = [2, 3, 4, 5, 7, 8, 11] # considerando a 1a sala como 0
 
@@ -210,13 +222,13 @@ for i in range(len(imgItens)):
     imgItens[i] = pg.transform.scale(imgItens[i], (int(tamanhoTela[y] * 0.1), int(tamanhoTela[y] * 0.1)))
 
 imgGreyItens = [
-    pg.image.load("terçoGREY.jpg").convert_alpha(),
-    pg.image.load("retratoGREY.jpg").convert_alpha(),
-    pg.image.load("florGREY.jpg").convert_alpha(),
+    pg.image.load("terçoGREY.png").convert_alpha(),
+    pg.image.load("retratoGREY.png").convert_alpha(),
+    pg.image.load("florGREY.png").convert_alpha(),
     pg.image.load("velaGREY.jpg").convert_alpha(),
-    pg.image.load("caveMexiGREY.jpg").convert_alpha(),
-    pg.image.load("tequilaGREY.jpg").convert_alpha(),
-    pg.image.load("pãoGREY.jpg").convert_alpha(),
+    pg.image.load("caveMexiGREY.png").convert_alpha(),
+    pg.image.load("tequilaGREY.png").convert_alpha(),
+    pg.image.load("pãoGREY.png").convert_alpha(),
 ] 
 
 for i in range(len(imgGreyItens)):
@@ -229,8 +241,6 @@ clock = pg.time.Clock()
 
 vida = 3
 itens = 14
-
-mapaAtual = 0
 
 colisaoTp9 = colisaoTp11 = False
 tempoMinTp = 0.5
@@ -254,6 +264,8 @@ coracaoGreyImg = pg.transform.scale(coracaoGreyImg, (int(tamanhoTela[1] * 0.1), 
 
 corJogador = (255,255,255)
 
+gifCavRindo = Image.open("caveRindo.gif")
+frameAtual = 0
 
 mov = False
 while loop:
@@ -266,8 +278,42 @@ while loop:
             if evento.type == pg.QUIT or teclas[pg.K_x] and teclas[pg.K_i] and teclas[pg.K_e] and teclas[pg.K_t]:
                 loop = False
 
-        add((0,0,0))
+        for parede in mapa[mapaAtual]["paredes"]:
+            add((255,0,0),parede)
+            if jogador.colliderect(parede):
+                distXD = jogador.right - parede.left # direita do jogador
+                distXE = jogador.left - parede.right
+                distYC = jogador.top - parede.bottom # cima do jogador
+                distYB = jogador.bottom - parede.top
 
+                distXE = distXE * -1 if distXE <= 0 else distXE
+                distXD = distXD * -1 if distXD <= 0 else distXD
+                distYB = distYB * -1 if distYB <= 0 else distYB
+                distYC = distYC * -1 if distYC <= 0 else distYC
+
+                if distXD < distXE:
+                    menorSpX = distXD
+                else:
+                    menorSpX = distXE
+
+                if distYC < distYB:
+                    menorSpY = distYC
+                else:
+                    menorSpY = distYB
+
+                if menorSpX < menorSpY:
+                    if menorSpX == distXD:
+                        colisaoDireita = True
+                    else:
+                        colisaoEsquerdo = True
+                else:
+                    if menorSpY == distYB:
+                        colisaoBaixo = True
+                    else:
+                        colisaoCima = True
+
+        mapaFundo = pg.transform.scale(mapa[mapaAtual]["mapa"], (int(tamanhoTela[x]), int(tamanhoTela[y])))
+        janela.blit(mapaFundo, (0,0))
 
         mov = False
         if teclas[pg.K_UP] and not colisaoCima:
@@ -309,13 +355,19 @@ while loop:
             add((255, 255, 0), esqueleto)
             if jogador.colliderect(mapa[mapaAtual]["esqueleto"]):
                 risada.play()
-                overlay = pg.Surface(tamanhoTela)
-                overlay.fill((255, 0, 0))
-                janela.blit(overlay, (0, 0))
-                pg.display.flip() 
-                pg.time.delay(500) 
+                for _ in range(2):
+                    for frame in ImageSequence.Iterator(gifCavRindo):
+                        frame = frame.convert("RGBA")
+                        frame = frame.resize((tamanhoTela[x], tamanhoTela[y]))
+                        modo, tamanho, dados = frame.mode, frame.size, frame.tobytes()
+                        sustoFrame = pg.image.fromstring(dados, tamanho, modo)
+                        janela.blit(sustoFrame, (0, 0))
+                        pg.display.flip() 
+                        pg.time.delay(50) 
+
                 mapa[mapaAtual].pop("esqueleto")
                 vida -= 1
+
 
         if "objeto" in mapa[mapaAtual]:
             add((255, 165, 0), mapa[mapaAtual]["objeto"])
@@ -324,40 +376,6 @@ while loop:
                 mapa[mapaAtual].pop("objeto")
                 texto = ""
                 enig = True
-                
-        for parede in mapa[mapaAtual]["paredes"]:
-            add((255,0,0),parede)
-            if jogador.colliderect(parede):
-                distXD = jogador.right - parede.left # direita do jogador
-                distXE = jogador.left - parede.right
-                distYC = jogador.top - parede.bottom # cima do jogador
-                distYB = jogador.bottom - parede.top
-
-                distXE = distXE * -1 if distXE <= 0 else distXE
-                distXD = distXD * -1 if distXD <= 0 else distXD
-                distYB = distYB * -1 if distYB <= 0 else distYB
-                distYC = distYC * -1 if distYC <= 0 else distYC
-
-                if distXD < distXE:
-                    menorSpX = distXD
-                else:
-                    menorSpX = distXE
-
-                if distYC < distYB:
-                    menorSpY = distYC
-                else:
-                    menorSpY = distYB
-
-                if menorSpX < menorSpY:
-                    if menorSpX == distXD:
-                        colisaoDireita = True
-                    else:
-                        colisaoEsquerdo = True
-                else:
-                    if menorSpY == distYB:
-                        colisaoBaixo = True
-                    else:
-                        colisaoCima = True
 
         for k,v in mapa[mapaAtual]["saidas"].items():
             if jogador.colliderect(v):
@@ -499,19 +517,15 @@ while loop:
         overlay.fill((0, 0, 0))
         janela.blit(overlay, (0, 0))
 
-        txt = fonte.render(texto, True, (255,255,255))
-        janela.blit(txt, (tamanhoTela[x]*0.5, tamanhoTela[y]*0.7))
+        
+        
+        enigma = pg.transform.scale(mapa[mapaAtual]["enigma"], (int(tamanhoTela[x]), int(tamanhoTela[y])))
+        janela.blit(enigma, (0, 0))
+
+        txt = fonte.render(texto, True, (0,0,0))
+        janela.blit(txt, (tamanhoTela[x]*0.4, tamanhoTela[y]*0.7))
         txt2 = texto.lower()
 
-        
-        enigma = fonte.render(mapa[mapaAtual]["enigma"], True, (255,255,255))
-        janela.blit(enigma, (tamanhoTela[x]*0.25, tamanhoTela[y]*0.3))
-
-        enigma = fonte.render(mapa[mapaAtual]["enigma2"], True, (255,255,255))
-        janela.blit(enigma, (tamanhoTela[x]*0.25, tamanhoTela[y]*0.4))
-
-        enigma = fonte.render(mapa[mapaAtual]["enigma3"], True, (255,255,255))
-        janela.blit(enigma, (tamanhoTela[x]*0.25, tamanhoTela[y]*0.5))
 
         for evento in eventos:
             if evento.type == pg.KEYDOWN:
@@ -521,8 +535,6 @@ while loop:
                             itens -= 1
                             enig = False
                             mapa[mapaAtual].pop("enigma")
-                            mapa[mapaAtual].pop("enigma2")
-                            mapa[mapaAtual].pop("enigma3")
                         else:
                             inicio = pg.time.get_ticks()
                             espera = 500
