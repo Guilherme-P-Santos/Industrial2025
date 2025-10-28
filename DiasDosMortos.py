@@ -225,7 +225,7 @@ imgGreyItens = [
     pg.image.load("terçoGREY.png").convert_alpha(),
     pg.image.load("retratoGREY.png").convert_alpha(),
     pg.image.load("florGREY.png").convert_alpha(),
-    pg.image.load("velaGREY.jpg").convert_alpha(),
+    pg.image.load("velaGREY.png").convert_alpha(),
     pg.image.load("caveMexiGREY.png").convert_alpha(),
     pg.image.load("tequilaGREY.png").convert_alpha(),
     pg.image.load("pãoGREY.png").convert_alpha(),
