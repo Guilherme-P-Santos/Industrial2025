@@ -32,8 +32,6 @@ jX = 500
 
 jogador = pg.Rect(jX,jY, 100, 100)
 
-
-
 coracoes = [
     pg.Rect(tamanhoTela[x] * 0.8, tamanhoTela[x] * 0.0025, tamanhoTela[x] * 0.025, tamanhoTela[x] * 0.025),
     pg.Rect(tamanhoTela[x] * 0.835, tamanhoTela[x] * 0.0025, tamanhoTela[x] * 0.025, tamanhoTela[x] * 0.025),
@@ -264,8 +262,15 @@ coracaoGreyImg = pg.transform.scale(coracaoGreyImg, (int(tamanhoTela[1] * 0.1), 
 
 corJogador = (255,255,255)
 
-gifCavRindo = Image.open("caveRindo.gif")
-frameAtual = 0
+gifCavRindo = Image.open("caveRindo.gif") 
+
+gifPortal = Image.open("portal.gif")
+framesGifPortal = ImageSequence.Iterator(gifPortal)
+iFrameGifPortal = 0
+vaiProxFramePort = True
+tempoPorFramePort = 100
+
+salasComPortal = [8, 10]
 
 mov = False
 while loop:
@@ -274,6 +279,7 @@ while loop:
     eventos = pg.event.get()
 
     if not enig:
+
         for evento in eventos:
             if evento.type == pg.QUIT or teclas[pg.K_x] and teclas[pg.K_i] and teclas[pg.K_e] and teclas[pg.K_t]:
                 loop = False
@@ -368,7 +374,6 @@ while loop:
                 mapa[mapaAtual].pop("esqueleto")
                 vida -= 1
 
-
         if "objeto" in mapa[mapaAtual]:
             add((255, 165, 0), mapa[mapaAtual]["objeto"])
             if jogador.colliderect(mapa[mapaAtual]["objeto"]):
@@ -458,6 +463,28 @@ while loop:
                     jogador.x = tamanhoTela[x] - 100
                 
         if mapaAtual == 8:
+            # exibindo portal
+
+            frame = framesGifPortal[iFrameGifPortal].convert("RGBA")
+            frame = frame.resize((mapa[mapaAtual]["saidas"]["S9TP"].width, mapa[mapaAtual]["saidas"]["S9TP"].height))
+            modo, tamanho, dados = frame.mode, frame.size, frame.tobytes()
+            portalFrame = pg.image.fromstring(dados, tamanho, modo)
+            pos = mapa[mapaAtual]["saidas"]["S9TP"].topleft
+            janela.blit(portalFrame, pos)
+
+            if vaiProxFramePort:
+                inicioFramePor = pg.time.get_ticks()
+
+                iFrameGifPortal = (iFrameGifPortal + 1) % 4
+
+                vaiProxFramePort = False
+            else:
+                tempoAtualPor = pg.time.get_ticks()
+
+                if tempoAtualPor - inicioFramePor >= tempoPorFramePort:
+                    vaiProxFramePort = True
+
+
             if jogador.colliderect(mapa[mapaAtual]["saidas"]["S9TP"]) and not colisaoTp9:
                 colisaoTp9 = True
                 inicioColisao = time.gmtime(time.time())[5]
@@ -469,7 +496,28 @@ while loop:
             elif not jogador.colliderect(mapa[mapaAtual]["saidas"]["S9TP"]) and colisaoTp9:
                 colisaoTp9 = False
             
+            
         elif mapaAtual == 10:
+            # exibindo portal
+            frame = framesGifPortal[iFrameGifPortal].convert("RGBA")
+            frame = frame.resize((mapa[mapaAtual]["saidas"]["S11TP"].width, mapa[mapaAtual]["saidas"]["S11TP"].height),)
+            modo, tamanho, dados = frame.mode, frame.size, frame.tobytes()
+            portalFrame = pg.image.fromstring(dados, tamanho, modo)
+            pos = mapa[mapaAtual]["saidas"]["S11TP"].topleft
+            janela.blit(portalFrame, pos)
+
+            if vaiProxFramePort:
+                inicioFramePor = pg.time.get_ticks()
+
+                iFrameGifPortal = (iFrameGifPortal + 1) % 4
+
+                vaiProxFramePort = False
+            else:
+                tempoAtualPor = pg.time.get_ticks()
+
+                if tempoAtualPor - inicioFramePor >= tempoPorFramePort:
+                    vaiProxFramePort = True
+            
             if jogador.colliderect(mapa[mapaAtual]["saidas"]["S11TP"]) and not colisaoTp11:
                 colisaoTp11 = True
                 inicioColisao = time.gmtime(time.time())[5]
@@ -481,8 +529,10 @@ while loop:
             elif not jogador.colliderect(mapa[mapaAtual]["saidas"]["S11TP"]) and colisaoTp11:
                 colisaoTp11 = False
 
-        for saida in mapa[mapaAtual]["saidas"].values():
-            add((0,255,0), saida)
+
+        for k, v in mapa[mapaAtual]["saidas"].items():
+            if k not in ["S9TP", "S11TP"]:
+                add((0,255,0), v)
 
         # exibir itens que faltam
         janela.blit(fonte.render("Itens: ", True, (255, 255, 255)), (tamanhoTela[x] * 0.05, tamanhoTela[x] * 0.0025))
